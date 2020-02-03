@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+
+
+	<script type="text/javascript">
+		// var obj = new Function(var1, var2, ..., functionBody());
+		// var1, var2 正常变量 functionBody() 自定义函数体，可以用到前面的变量
+		// 注意：构造器构造的对象，效率低
+		// var1、var2顺序在functionBody中不能变
+
+		// var obj = new Function('a', 'b', 'return a+b');
+		// var s = obj(2, 5);
+		// alert(s);  // 7
+		// 说明： 对象分为函数对象、普通对象，通过new Function 创建的对象都是函数对象。
+
+
+		function a(){
+			var i = 0;
+			function b(){
+				alert(++i);
+			}
+			return b;
+		}
+
+		var c = a();
+		c();
+
+
+	</script>
+	
+</body>
+</html>

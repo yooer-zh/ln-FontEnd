@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // js 继承
+        // 原型：用prototype对象来添加属性和方法
+        // var person = function () { this.name = "zhangsan" };
+
+        // person.prototype.say = function () { 
+        //     alert("天气挺好");
+        //  }
+
+        // person.prototype.gongzi = 500;
+
+        // var programmer = function () {  };
+        // console.log(programmer.prototype);  // {constructor: ƒ}
+        // programmer.prototype = new person();
+        // console.log(programmer.prototype);  // person {name: "zhangsan"}
+        // programmer.prototype.wcd = function () { 
+        //     alert("明天天气也不错");
+        //  }
+        // programmer.prototype.gongzi = 1000;
+        // var p = new programmer()
+        // p.say();
+        // p.wcd();
+
+        var i = 0;
+        for (i = 1; i <= 10; i++) {
+            (function (i) {
+                var btn = document.createElement('button');
+                btn.innerText = i;
+                btn.onclick = function () {
+                    alert(i);
+                };
+                document.body.appendChild(btn);
+            })(i);
+        }
+    </script>
+</body>
+
+</html>

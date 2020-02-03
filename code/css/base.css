@@ -1,0 +1,35 @@
+/* 一般项目中都会有base.css 
+里面放一些 
+cssRest  和一些常用的class
+ */
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-size: 14px;
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	font-size: 14px;
+	color: #363636;
+	text-decoration: none;
+}
+a:hover {
+	color: #1428a0;
+}
+
+img {
+	vertical-align: top;
+	width: 100%;
+	/* 在ie浏览器中，img会有默认的黑色边框 */
+	border: none;
+}
+

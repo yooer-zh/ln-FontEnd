@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>String</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    var str = "hello world";
+    console.log(str[1]); // e  ES5 新增，IE7以下不支持
+    console.log(str.charAt(1)); // e 兼容性更好
+    console.log(str.charAt(11)); // '' 取不到就返回空字符串
+
+    console.log(str.charCodeAt(1)); // 101 返回的是编码
+
+    var email = "marry@163.com";
+    console.log(email.indexOf("@")); // 5
+    console.log(email.indexOf("z")); // -1
+    console.log(email.indexOf("rr")); // 2
+    console.log(email.indexOf("aa")); // -1
+
+    console.log(str.slice(7, 10)); // orl
+    console.log(str.slice(7)); // orld
+    console.log(str.slice(-3)); //  11 + -3 = 8  rld
+    console.log(str.slice(10, 7)); // ''
+
+
+    console.log(str.substring(1, 4)); // ell
+    console.log(str.substring(-7, 5)); // hello  遇到负数就会转换为0
+    console.log(str.substring(2, -5)); // (0, 2)  he
+
+    console.log(str.substr(6, 3)); // wor
+    console.log(str.substr(-5, 4)); // worl
+    console.log(str.substr(3, -4)); // ''
+
+    // 获取扩展名
+    var url = "index.html";
+
+    function getFileFormat(fileName) {
+        var indexCode = fileName.lastIndexOf(".");
+        if (indexCode == -1) { return undefined; }
+        return fileName.slice(indexCode);
+    }
+
+    var formatName = getFileFormat(url);
+    console.log(formatName); // .html
+
+    // split
+    var myStr = 'welcome-to-beijing';
+    strArray = myStr.split('-');
+    console.log(strArray); // (3) ["welcome", "to", "beijing"]
+
+    // 逗号隔开改为空格隔开
+    var tel = '010-62971268,400-100-9098,010-86789889';
+    var newTel = tel.replace(',', '  ');
+    console.log(tel); // 010-62971268,400-100-9098,010-86789889
+    console.log(newTel); // 010-62971268  400-100-9098,010-86789889  但是只替换了第一个
+
+    console.log(str.toUpperCase()); // HELLO WORLD
+    var upper = str.charAt(6).toUpperCase();
+    console.log(upper); // W
+
+    var str2 = "WELCOME";
+    console.log(str2.toLowerCase()); // welcome
+
+    //转驼峰写法的函数
+    function camelback(attr) {
+        var attrArray = attr.split('-');
+        for (var i = 1; i < attrArray.length; i++) {
+
+            var str = attrArray[i];
+            var newStr = str.charAt(0).toUpperCase() + str.slice(1);
+            attrArray[i] = newStr;
+
+        }
+        return attrArray.join('');
+
+    }
+
+    var camelFormat = camelback("border-left-color");
+    console.log(camelFormat); // borderLeftColor
+
+    // Math.min     Math.max
+    var min = Math.min(5, -4, 0, 9, 108, -55);
+    console.log(min); // -55
+
+    var max = Math.max(5, -4, 0, 9, 108, -55);
+    console.log(max); // -55
+    // 只要这组数字中出现了非数字，那么返回的就是 NAN
+    var max = Math.max(5, -4, 0, 9, 108, -55, "qwe");
+    console.log(max); // NAN
+
+
+    // Math.ceil()  Math.floor()
+    var num = 189.99;
+    console.log(num);  // 189.99
+    console.log(Math.ceil(num));  // 190
+    console.log(Math.floor(num));  // 189
+
+    console.log(Math.round(189.50));  // 190
+    console.log(Math.round(189.49));  // 189
+
+    var nums = -55;
+    console.log(Math.abs(nums));  // 55
+
+    // random
+    var random = Math.random();
+    console.log(random);  // 0~1 之间随机的数
+
+    // 自己封装以个生成n-m之间随机整数的函数
+    function getRandom(n, m) {
+    	var choice = m-n+1;  // 随机整数的个数
+    	return Math.floor(Math.random()*choice+n);
+    }
+    var random1 = getRandom(2, 6);
+    console.log(random1);
+
+    // 创建一个日期对象
+    var today = new Date();
+    console.log(today);  // Thu Nov 07 2019 17:47:27 GMT+0800 (中国标准时间)
+
+    var weeks = ["日", "一", "二", "三", "四", "五", "六"]
+    year = today.getFullYear(),
+    month = today.getMonth(),
+    date = today.getDate(),
+    week = today.getDay(),
+    hours = today.getHours(),
+    minutes = today.getMinutes(),
+    seconds = today.getSeconds(),
+    times = today.getTime(),
+    time = year + "年" + month + "月" + date + "日" + hours + "时" + minutes + "分" + seconds + "秒  星期" + weeks[week];
+    console.log("现在是：" + time);  // 现在是：2019年10月7日17时53分58秒
+    console.log(times);  // 1573120731008
+
+
+    // 50天之后是星期几
+    today.setDate(today.getDate() + 50);
+    console.log(today.getDay());
+
+
+
+    </script>
+</body>
+
+</html>

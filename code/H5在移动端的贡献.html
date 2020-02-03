@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<video src="../media/imooc.mp4" controls id="myVideo"></video>
+	<div id="playNode">播放</div>
+	<div id="stopNode">暂停</div>
+
+	<input type="button" id="reloadNode" value="刷新视频播放器">
+	<div id="gogogo">快进</div>
+
+	<input type="range" min="0" max="100" value="50" id="range">
+
+	<script type="text/javascript">
+		// 选中video标签
+		var VideoNode = document.getElementById('myVideo');
+
+		// var stopNode = document.getElementById('stopNode');
+
+		// var playNode = document.getElementById('playNode');
+
+		stopNode.onclick = function(){  // 给div一个暂停的事件
+			VideoNode.pause();
+		}
+
+		playNode.onclick = function(){
+			VideoNode.play();
+		}
+
+		reloadNode.onclick = function(){
+			VideoNode.load();
+		}
+
+		// console.log(VideoNode.duration);  // 直接这么写的话会返回NAN，因为视频还没有加载完，所以不知道它的长度
+
+		VideoNode.addEventListener('canplay', function(){
+			console.log('视频已经加载好，可以开始播放了'); 
+		});
+
+		VideoNode.currentTime = 30;
+		// setInterval(function(){
+		// 	console.log(VideoNode.currentTime);
+		// },1000);
+
+		gogogo.onclick = function(){
+			VideoNode.currentTime = VideoNode.currentTime + 3;
+		}
+
+		VideoNode.volume = 0.5;
+		range.oninput = function(){
+			VideoNode.volume = this.value/100;
+		}
+
+		VideoNode.controls = false;
+
+		setTimeout(function(){
+			console.log(VideoNode.networkState);
+		}, 100);
+
+	</script>
+</body>
+</html>

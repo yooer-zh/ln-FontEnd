@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BOM</title>
+</head>
+
+<body>
+    <div id="info">我是信息</div>
+    <input type="submit" name="" value="删除" id="del">
+    <script type="text/javascript">
+    // var age = 15;  // 这条语句相当于是 window.age = 15;
+    // function sayAge(){
+    // 	alert("我" + age);
+    // }
+    // // 声明一个全局变量
+    // window.username = "marry";  // 相当于 var username = "marry";
+    // // 声明一个全局方法
+    // window.sayName = function(){
+    // 	alert("我是"+this.username);
+    // }
+    // sayAge();
+    // window.sayName();
+    document.getElementById("del").addEventListener("click", function() {
+        if (window.confirm("确定要删除吗？")) {
+            document.body.removeChild(document.getElementById("info"));
+        } else {
+            return null;
+        }
+    })
+    </script>
+    <button id="prompt">prompt测试</button>
+    <script type="text/javascript">
+    var prom = document.getElementById("prompt");
+    prom.addEventListener("click", function() {
+        var textInfo = window.prompt("我是提示\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n信息", "我是默认输入的信息");
+        if (textInfo) {
+            alert(textInfo);
+        } else {
+            alert(textInfo);
+        }
+    })
+    </script>
+
+    <!-- open -->
+    <button id="open">打开新窗口</button>
+    <button id="close">关闭此窗口</button>
+    <script type="text/javascript">
+    document.getElementById("open").addEventListener("click", function() {
+        window.open('DOM.html', 'name', 'width=400, height=200, left=0, top=0, toolbar=no, menubar=no, scrollbars=no, location=no,status=no');
+    })
+    document.getElementById('close').addEventListener('click', function(){
+    	window.close();
+    })
+    </script>
+
+    <script type="text/javascript">
+    	var timeout1 = window.setTimeout(function(){
+    		alert("延迟了1s");
+    	}, 1000);
+    	clearTimeout(timeout1);
+
+    	window.num = 0;
+    	window.setInterval(function(){
+    		console.log("你好");
+    		var txt = document.createTextNode(num);
+    		var div = document.createElement("div")
+    		div.appendChild(txt);
+    		document.body.appendChild(div);
+    		num++;
+    	}, 1000);
+    </script>
+</body>
+
+</html>

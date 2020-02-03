@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>文本叶子节点</p>
+    <ul id="box">
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+        <li>item4</li>
+    </ul>
+    <div id="myDiv">
+        <ul id="myUl">
+            <li>1</li>
+            <li>2</li>
+        </ul>
+    </div>
+    <table border="1">
+        <tr id="tr">
+            <td>第一行</td>
+            <td>第二行</td>
+            <td>第三行</td>
+        </tr>
+    </table>
+    <img src="../media/1568950856028.png">
+    <img src="../media/1568962775258.png">
+    <form>
+        <input type="text" name="" value="用户名">
+    </form>
+    <form>
+        <input type="text" name="" value="密码">
+    </form>
+    <a href="#">忘记密码</a>
+    <a href="#">更多内容</a>
+    <select id="select">
+        <option value="0">北京</option>
+        <option value="1">天津</option>
+        <option value="2">河北</option>
+    </select>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script type="text/javascript">
+    var oHtml = document.documentElement; // documentElement属性 返回文档的根节点
+    // tagName属性 返回元素的标签名
+    console.log(oHtml.tagName); // HTML
+    // 获取head元素
+    var oHead = oHtml.firstChild;
+    console.log(oHead); // head 节点
+    var oHead = oHtml.childNodes[0];
+    console.log(oHead); // head 节点
+    var oHead = oHtml.childNodes.item(0);
+    console.log(oHead); // head
+
+    // 寻找body元素，它是html的第二个子元素
+    var oBody = oHtml.childNodes[1];
+    // 解释：#text是文本节点，是因为现代的标准浏览器会将两个节点中间的空格也视作文本节点。
+    console.log(oBody); // #text
+    var oBody = oHtml.childNodes.item(1);
+    console.log(oBody); // #text
+
+    // 寻找父节点
+    console.log(oHead.parentNode == oHtml); // true
+
+    // 兄弟节点之间的查找
+    console.log(oBody.previousSibling == oHead); // true
+    console.log(oHead.nextSibling == oBody); // true
+
+    // 祖先节点
+    console.log(oBody.ownerDocument);
+
+    // 是否存在子节点
+    console.log(oBody.hasChildNodes()); // true/false
+
+    // 遍历节点案例
+    var s = "";
+
+    function travel(space, node) { // space:节点之间分割的字符串   node：遍历的当前节点
+        if (node.tagName) { // 如果当前节点是标签，就直接拼接字符串
+            s += space + node.tagName + '<br/>';
+        }
+        var len = node.childNodes.length; // 保存当前节点的子节点的个数
+        for (var i = 0; i < len; i++) { // 遍历节点的子节点
+            travel(space + "|-", node.childNodes[i]);
+        }
+    }
+    travel("", document);
+    document.write(s);
+
+    var box = document.getElementById('box');
+    console.log(box);
+    var nodes = box.childNodes;
+
+    function makeArray(nodeList) {
+        var arr = null;
+        try {
+            return Array.prototype.slice.call(nodeList);
+        } catch (e) {
+            arr = new Array();
+            for (var i = 0, len = nodeList.length; i < len; i++) {
+                arr.push(nodeList[i]);
+            }
+            return arr;
+        }
+    }
+
+    var newNodeList = makeArray(nodes);
+    newNodeList.push("<li>动态添加的节点四</li>");
+    console.log(newNodeList); // (10) [text, li, text, li, text, li, text, li, text, "<li>动态添加的节点四</li>"]
+
+    // HTMLCollection
+    var script = document.scripts;
+    var links = document.links;
+    var cells = document.getElementById("tr").cells;
+    var imgs = document.images;
+    var forms = document.forms;
+    var options = document.getElementById("select").options;
+    var ps = document.getElementsByTagName("p");
+
+    // console.log(script);  // HTMLCollection [script]
+    // console.log(links);  // HTMLCollection(2) [a, a]
+    // console.log(cells);  // HTMLCollection(3) [td, td, td]
+    // console.log(imgs);  // HTMLCollection(2) [img, img]
+    // console.log(forms);  // HTMLCollection(2) [form, form]
+    // console.log(options);  // HTMLOptionsCollection(3) [option, option, option, selectedIndex: 0]
+    // console.log(ps);  // HTMLCollection [p]
+
+    var box = document.getElementById("box");
+    var attrs = box.attributes;
+    // console.log(attrs);
+    // console.log(attrs.length);  // 1  集合里元素的个数，属性节点的个数
+    // console.log(attrs[0]);  // id="box"  
+    // console.log(attrs.item(1));  // null  属性节点拥有的
+
+    var divs = document.getElementsByTagName("div");
+    var length = divs.length;
+    var i = 0;
+    while (i < length) {
+        document.body.appendChild(document.createElement("div"));
+        i++;
+    }
+
+    var getElementById = function(id) {
+        var el = document.getElementById(id);
+        // 针对ie浏览器修复
+        if (!+"\v1") { // 利用了各个浏览器对转义字符 \v 的解释，ie中\v没有转义，得到的字符就是v，其他浏览器是类似空格的符号
+            if (el && el.id === id) {
+                return el;
+            } else {
+                // 获得所有id或name值符合条件的，然后逐个判断
+                var els = document.all[id],
+                    n = els.length;
+                for (var i = 0; i < n; i++) {
+                    if (els[i].id === id) {
+                        return els[i];
+                    }
+                }
+            }
+        }
+        return el;
+    }
+
+    var myDiv = document.getElementById("myDiv");
+    // var ul = myDiv.querySelector("#myUl");
+    // console.log(ul);
+
+    var myUl = document.getElementById("myUl");
+    var txt = document.createTextNode("4");
+    var li = document.createElement('li');
+    // var firstLi = document.getElementById('tr').firstElementChild;
+
+    // li.appendChild(txt);
+    // myUl.appendChild(li);
+    // myUl.appendChild(firstLi);
+
+    var liNew = document.createElement('li');
+    liNew.appendChild(txt);
+    var li2 = myUl.children.item(1);
+    myUl.insertBefore(liNew, li2);
+
+    var div = document.createElement("div");
+    var textNode = document.createTextNode("DOM探索");
+    div.appendChild(textNode);
+
+    var textNode2 = document.createTextNode("之节点操作");
+    div.appendChild(textNode2);
+
+    document.body.appendChild(div);
+
+    console.log(div.childNodes.length);
+    div.normalize();
+    console.log(div.childNodes.length);
+
+    var newNode = div.firstChild.splitText(5);
+
+    // removeChild
+    // console.log(myUl.childNodes.length);
+    // var secondChild = myUl.removeChild(myUl.childNodes[1]);
+    // console.log(secondChild);
+
+    var div = document.createElement("div");
+    // console.log(div.parentNode);
+    // document.body.removeChild(document.body.appendChild(div));
+
+    // console.log(div.parentNode);
+    // console.log(div.parentNode.nodeType);
+
+    // document.body.innerHTML = '';
+    // console.log(myDiv.parentNode);
+
+    myDiv.parentNode.removeChild(myDiv);
+    console.log(myDiv.id + ":" + myDiv.innerHTML);
+
+    // myDiv.parentNode.innerHTML = "";
+    // console.log(myDiv.id + ":" + myDiv.innerHTML);
+
+    </script>
+</body>
+
+</html>

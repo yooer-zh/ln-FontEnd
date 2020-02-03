@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Error</title>
+</head>
+<body>
+
+	
+
+	<script type="text/javascript">
+		// var foo;
+
+		// console.log(foo.length);
+
+		// function foo() {
+		// 	return foo();
+		// }
+		// foo();
+
+
+		// function S(n) {
+		// 	if (n == 1) {
+		// 		return 1;
+		// 	} else {
+		// 		return n + S(n - 1);
+		// 	}
+		// }
+
+		function multiple(a,b) {
+			// 如果a b参数的类型不对，就主动触发错误  throw
+			if ((typeof a != 'number') || (typeof b != 'number')) {
+				throw new Error('自定义错误，参数数据类型不对');
+			}
+			return a * b;
+		}
+		// 如果传入的参数不是数字，怎么办？
+		try { // 如果内部的代码抛出错误，则代码直接跳入catch块运行，且把错误对象赋值给catch括号内的变量
+			multiple('a', 'b');
+			console.log("没出错执行我。");
+		} catch(e) {
+			console.log("出错了执行我。");
+			console.log(e);  // console.log(e);
+		} finally {
+			// 不管有没有错，最终finally里的语句都会执行
+			// 可以在里面做一些  清理性的工作
+		}
+
+		function foo() {
+			try{
+				throw new Error();
+			} catch (e) {
+				return 1;
+			} finally {
+				return 2;
+			}
+		}
+
+		console.log(foo());  // 2
+		
+
+	</script>
+</body>
+</html>

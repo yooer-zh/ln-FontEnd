@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas</title>
+	<style>
+		.canvas {
+			border: 1px solid red;
+			/*width: 100px;*/
+			/*height: 100px;*/
+			/*
+            在css中定义的画布宽高并不是画布的真实宽高
+            */
+		}
+	</style>
+</head>
+<body>
+	<canvas class="canvas" id="myCanvas">您的浏览器不支持canvas</canvas>
+
+	<script>
+		var canvas = document.getElementById('myCanvas');
+		var ctx = canvas.getContext('2d');  // 得到上下文
+		canvas.height = 400;
+		canvas.width = 600;
+		
+		var str = "hello world";
+		ctx.font = "50px sans-serif";  // 可以设置字号和字体
+		// 水平对齐设置， left ceter right
+		ctx.textAlign = "center";
+		// 垂直对齐设置， top middle bottom
+		ctx.textBaseline = "top";
+		// 对字体填充，第一个参数是要显示的文字，后面两个是显示的位置
+		ctx.fillText(str, 300, 0);  
+		// 对字体描边
+		ctx.strokeText(str, 300, 200);
+
+		// 知识点，获取文本的宽度
+		var width = ctx.measureText(str).width;
+		console.log(width);
+
+	</script>
+	
+</body>
+</html>

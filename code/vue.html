@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">{{ msg }}</div>
+	<div></div>
+	<div></div>
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript">
+		let vm = new Vue({
+			// 通过构造函数参数中 el属性指定vue实例需要管理的范围，值是一个id
+			el: "#app",
+			// 通过data属性保存页面需要用到的数据
+			data: {
+				msg: 'hello world',
+			}
+
+		});
+
+	</script>
+</body>
+</html>

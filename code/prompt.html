@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>prompt</title>
+</head>
+<body>
+
+	<script>
+		// prompt 如果点确定，age就是用户输入的信息，如果点击取消，age就是null
+		// var age = prompt("请输入您的年龄");
+		// console.log(age);
+		// var week = new Date().getDay();
+		// console.log(week);
+		// for(var i=1;i<=100;i++){
+		// 	document.write(i + '<br />');
+		// }
+
+		// 求任意一组数的平均值
+		// function getAvg(){
+		// 	// 对所有参数进行求和
+		// 	var sum = 0; len = arguments.length;
+		// 	for(var i=0;i<len;i++){
+		// 		sum+=arguments[i]
+		// 	}
+		// 	console.log(sum/len);
+		// 	return sum/len;
+		// }
+
+		// getAvg(67, 89, 154)
+
+		//Array
+		// var colors = new Array(3);
+		// colors[0] = 1;
+		// colors[1] = 2; 
+		// colors[2] = 3;
+		// colors[3] = 3;
+		// colors[99] = 100;
+		// console.log(colors);
+
+		// slice()
+		// var b = [1,2,3,4,5]
+		// console.log(b.slice(-1, 1))  // []
+
+		// splice
+		// var arr = ["a", "b", "c", "d", "e", "f"];
+		// var delArr = arr.splice(2, 2);
+		// console.log(arr);  // (4) ["a", "b", "e", "f"]
+		// console.log(delArr);  // (2) ["c", "d"]
+		// var insertArr = arr.splice(3,0,"m","n");
+		// console.log(arr);  // (8) ["a", "b", "c", "m", "n", "d", "e", "f"]
+		// console.log(insertArr);  // []
+		// var repalceArr = arr.splice(1,2,"x", "y", "z");  // 从索引1开始，删除2个，再把后面的插入进去
+		// console.log(arr);  // (7) ["a", "x", "y", "z", "d", "e", "f"]
+		// console.log(repalceArr);   // (2) ["b", "c"]
+
+		// indexOf
+		var nums = [1,7,5,7,8,1,6,9];
+		var pos = nums.indexOf(7);
+		console.log(pos);
+
+		var pos = nums.indexOf(7, 3);
+		console.log(pos);  // 
+		
+		
+
+
+	</script>
+</body>
+</html>

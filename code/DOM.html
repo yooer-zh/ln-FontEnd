@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM</title>
+</head>
+<body>
+	<!-- <ul id="myList"></ul> -->
+	<div id="content"></div>
+
+	
+<!-- 	<script type="text/javascript">
+		// 创建节点、文本
+		var comment = document.createComment("A comment");
+		var ul = document.getElementById("myList");
+		var li = null;
+		var fragment = document.createDocumentFragment();
+
+		for (var i = 0; i < 3; i++) {
+			li = document.createElement("li");
+			li.appendChild(document.createTextNode("Item" + (i+1)));
+			fragment.appendChild(li);
+		}
+
+		ul.appendChild(fragment);
+		// 第一个参数：要插入的节点  第二个参数：要插入的节点的相对的位置
+		document.body.insertBefore(comment, ul);
+
+	</script> -->
+<!-- 	<script type="text/javascript">
+		(function(){
+			if(!
+				// 下面代码的意思：如果是ie才会执行 /*@cc_on@*/里面的代码，也就是一个叹号
+				// 那么ie下运行就是假，其他浏览器就是真。
+				/*@cc_on!@*/
+			0) return;
+			// 使JS代码就在这个作用域下执行，不污染Window环境
+			var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, nav, output, progress, section, time, video".split(', ');
+			var i = e.length;
+			while (i--) {
+				document.createElement(e[i]);
+			}
+			// 加上这些代码以后，在ie下也就可以使用这些 标签了 。
+		})();
+	</script> -->
+	<script type="text/javascript">
+		var content = document.getElementById("content");
+		var str = "<p>This is a <strong>paragraph</strong> with a list following it.</p>"
+		+ "<ul>"
+		+ "<li>Item 1</li>"
+		+ "<li>Item 2</li>"
+		+ "<li>Item 3</li>"
+		+ "</ul>";
+
+		content.innerHTML = str;
+		// 打印的结果是从div节点（添加的节点的外部一层）开始，包含子元素。
+		// innerHTML 却不包含外部的div节点
+		console.log(content.outerHTML);
+		// content.outerHTML = "<p>This is a paragraph.</p>";  // 这么写的话  原来的div就不存在了，而是替换成了一个新的
+
+
+		console.log(content.innerText);  // 只返回文本，没有标签
+		content.innerText = "<p>This is a paragraph.</p>"  // 写入
+
+
+	</script>
+
+</body>
+</html>
