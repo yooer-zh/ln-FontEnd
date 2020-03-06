@@ -165,3 +165,46 @@ vuex的store目录在 /src/目录下
 
 VUE最主要的就是在做组件开发，最终还是要回归组件开发，大部分时间都是在做组件开发，每个页面只是调用开发的组件。上述就是别人写好的组件，打包好了，我们可以直接用。
 
+# 练手小项目
+
+使用vue脚手架搭建
+
+为了做移动端适配，使用 rem 布局， 新建 `/src/config/rem.js` 在`main.js` 下做配置
+
+```javascript
+// eslint-disable no-undef */
+// 第一行做eslint忽略
+!function(n){
+  var  e=n.document,
+       t=e.documentElement,
+       i=720,
+       d=i/100,
+       o="orientationchange"in n?"orientationchange":"resize",
+       a=function(){
+           var n=t.clientWidth||320;n>720&&(n=720);
+           t.style.fontSize=n/d+"px"
+       };
+       e.addEventListener&&(n.addEventListener(o,a,!1),e.addEventListener("DOMContentLoaded",a,!1))
+}(window);
+```
+
+然后在 `main.js` 中引入一下 `import '@/config/rem'`  就可以使用了
+
+**注意： 此章节配置都是基于vue-cli2 版本，cli3需另外研究**
+
+px自动转换rem、可配置转换
+
+1. 下载loader `npm i px2rem-loader`
+
+2. 在 `/build/utils.js 中配置`
+
+   ![image-20200306153118229](media/image-20200306153118229.png)
+
+3. 使用，选择性转换
+
+   ![image-20200306153149557](media/image-20200306153149557.png)
+
+   在项目中任意地方使用，默认会将`px` 转换为`rem` ，后面加注释 `/* no */` 则为不转换
+
+## 实现head 部分
+
