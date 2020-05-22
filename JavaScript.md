@@ -1723,7 +1723,7 @@ function setInnerText(element, text) {
 
 DOM是呈现为一个树状结构的，因此节点之间存在 上下左右 的关系。
 
-![image-20191108173750717](.\media\image-20191108173750717.png)
+![image-20191108173750717](media/image-20191108173750717.png)
 
 #### 第一种方法： 家族
 
